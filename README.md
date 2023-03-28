@@ -1,12 +1,15 @@
-# eth-docker: Docker automation for Ethereum consensus and execution clients.
+# pulse-docker: Docker automation for Pulsechain consensus and execution clients.
 
-[![GitPOAP Badge](https://public-api.gitpoap.io/v1/repo/eth-educators/eth-docker/badge)](https://www.gitpoap.io/gh/eth-educators/eth-docker)
 
-eth-docker, a docker automation project for [Ethereum](https://ethereum.org/en/upgrades/) consensus and execution clients.
+Forked from eth-docker, a docker automation project for [Ethereum](https://ethereum.org/en/upgrades/) consensus and execution clients.
 
 ### Getting Started
 
-Please see the [official documentation](https://eth-docker.net).
+Please see the [official eth-docker documentation](https://eth-docker.net).
+TODO: Pulsechain version of documentation (as well as EL & CL clients)
+
+# NB Work In Progress. 
+## NOT ready for use yet. [2023-03-28T23:33:00+00:00]
 
 For a quick testnet start, you can install prerequisites and configure eth-docker, as a non-root user:
 
