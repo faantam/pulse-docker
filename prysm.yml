@@ -72,7 +72,6 @@ services:
       - --verbosity
       - ${LOG_LEVEL}
       - --${NETWORK}
-      - --accept-terms-of-use
       - --monitoring-host
       - 0.0.0.0
       - --monitoring-port
@@ -109,7 +108,6 @@ services:
       - --verbosity
       - ${LOG_LEVEL}
       - --${NETWORK}
-      - --accept-terms-of-use
       - --monitoring-host
       - 0.0.0.0
       - --monitoring-port
