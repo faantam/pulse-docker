@@ -63,14 +63,10 @@ if [[ "$1" =~ ^(beacon-chain)$ ]]; then
 # shellcheck disable=SC2086
     exec "$@" "--genesis-state=$GENESIS" ${__rapid_sync} ${__prune} ${__mev_boost} ${CL_EXTRAS}
   elif [[ "$*" =~ --pulsechain-testnet-v4 ]]; then
-    GENESIS=/var/lib/prysm/genesis.ssz
-    if [ ! -f "$GENESIS" ]; then
-      echo "Fetching genesis file for PulseChain testnet v4"
-      curl -fsSL -o "$GENESIS" https://checkpoint.v4.testnet.pulsechain.com
-    fi
+    GENESIS=https://checkpoint.v4.testnet.pulsechain.com
 # Word splitting is desired for the command line parameters
 # shellcheck disable=SC2086
-    exec "$@" "--genesis-state=$GENESIS" ${__rapid_sync} ${__prune} ${__mev_boost} ${CL_EXTRAS}
+    exec "$@" "--genesis-beacon-api-url=$GENESIS" ${__rapid_sync} ${__prune} ${__mev_boost} ${CL_EXTRAS}
   else
 # Word splitting is desired for the command line parameters
 # shellcheck disable=SC2086
