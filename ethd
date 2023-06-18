@@ -567,6 +567,7 @@ envmigrate() {
             if [[ "${var}" = "NETWORK" && "${value}" =~ "prater" ]]; then
                 value="goerli"
             fi
+            # Handle & in GRAFFITI gracefully
             sed -i'.original' -e "s~^\(${var}\s*=\s*\).*$~\1${value}~" "${ENV_FILE}"
         fi
     done
