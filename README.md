@@ -6,7 +6,7 @@ Forked from Eth Docker, a docker automation project for [Ethereum](https://ether
 
 Please see the [official Eth Docker documentation](https://eth-docker.net).
 
-For a quick testnet start, you can install docker-ce:
+For a quick testnet start with Ubuntu, you can install docker-ce:
 
 ```bash
 sudo apt-get update
@@ -20,9 +20,11 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-Set up a user not name `root`, such as `docker`:
+Add the current Unix user to the `docker` group:
 
-TODO: add instructions on setting up a docker user.
+```bash
+sudo usermod -aG docker ${USER}
+```
 
 Finally - install, configure, and run Pulse Docker:
 
