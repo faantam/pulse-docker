@@ -6,7 +6,11 @@ Forked from eth-docker, a docker automation project for [Ethereum](https://ether
 ### Getting Started
 
 Please see the [official eth-docker documentation](https://eth-docker.net).
-TODO: Pulsechain version of documentation (as well as EL & CL clients)
+
+Usage:
+./ethd install
+./ethd config
+./ethd up
 
 # NB Work In Progress. 
 ## NOT ready for use yet. [2023-03-28T23:33:00+00:00]
