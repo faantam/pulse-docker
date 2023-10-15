@@ -1,25 +1,21 @@
-# pulse-docker: Docker automation for Pulsechain consensus and execution clients.
+# Pulse Docker: Docker automation for PulseChain nodes.
 
+Forked from Eth Docker, a docker automation project for [Ethereum](https://ethereum.org/en/upgrades/) consensus and execution clients.
 
-Forked from eth-docker, a docker automation project for [Ethereum](https://ethereum.org/en/upgrades/) consensus and execution clients.
+## Getting Started
 
-### Getting Started
+Please see the [official Eth Docker documentation](https://eth-docker.net).
 
-Please see the [official eth-docker documentation](https://eth-docker.net).
+For a quick testnet start, you can install prerequisites and configure Pulse Docker, as any user not named `root`:
 
-# NB Work In Progress. 
-## NOT ready for use yet. [2023-03-28T23:33:00+00:00]
-
-For a quick testnet start, you can install prerequisites and configure eth-docker, as a non-root user:
-
-* `cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-docker`
+* `cd ~ && git clone https://github.com/faantam/pulse-docker.git && cd pulse-docker`
 * `./ethd install`
 * `./ethd config`
 * `./ethd up`
 
 ## License
 
-[Apache License v2](https://github.com/eth2-educators/eth-docker/blob/master/LICENSE)
+[Apache License v2](https://github.com/eth-educators/eth-docker/blob/main/LICENSE)
 
 # Version
 
