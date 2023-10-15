@@ -7,11 +7,6 @@ Forked from eth-docker, a docker automation project for [Ethereum](https://ether
 
 Please see the [official eth-docker documentation](https://eth-docker.net).
 
-Usage:
-./ethd install
-./ethd config
-./ethd up
-
 # NB Work In Progress. 
 ## NOT ready for use yet. [2023-03-28T23:33:00+00:00]
 
@@ -20,6 +15,7 @@ For a quick testnet start, you can install prerequisites and configure eth-docke
 * `cd ~ && git clone https://github.com/eth-educators/eth-docker.git && cd eth-docker`
 * `./ethd install`
 * `./ethd config`
+* `./ethd up`
 
 ## License
 
