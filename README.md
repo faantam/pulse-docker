@@ -27,10 +27,15 @@ sudo usermod -aG docker ${USER}
 ```
 
 Finally - install, configure, and run Pulse Docker:
-
 * `cd ~ && git clone https://github.com/faantam/pulse-docker.git && cd pulse-docker`
 * `./ethd install`
 * `./ethd config`
+* `./ethd up`
+
+## Updating
+
+To update Pulse Docker and the images, run:
+* `./ethd update`
 * `./ethd up`
 
 ## License
