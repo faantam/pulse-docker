@@ -159,7 +159,6 @@ services:
       - --wallet-dir=/var/lib/prysm/
       - --beacon-rpc-provider=consensus:4000
       - --wallet-password-file=/var/lib/prysm/password.txt
-      - --${NETWORK}
     depends_on:
       - consensus
 
