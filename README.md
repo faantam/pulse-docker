@@ -72,6 +72,38 @@ The created files will be in the directory `.eth/validator_keys` in this project
  
 This is also where you'd place your own keystore files if you already have some for import.
 
+### Test your Seed Phrase
+
+From the project directory:
+
+```
+./ethd cmd run --rm deposit-cli-existing --folder seed_check --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)
+```
+> Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
+
+Select your language preference.
+
+Type your mnemonic seed.
+
+Enter the index (key number). 
+> If generated 1 previous validator key file and entered 1 initially, then it is index[0]. So you will enter 0. Hence, you are entering the index from which to start generating the key file from.
+
+Enter how may new validators you wish to run.
+> Enter the number of validators you entered when initially generating the key file.
+> If you are running 1 previous validator and entered 1 initially, then enter 1.
+
+Type any password you like, as you'll throw away the duplicate `keystore-m` files.
+
+Compare the `deposit_data` JSON files to ensure the files are identical.
+```
+diff -s .eth/validator_keys/deposit_data*.json .eth/seed_check/deposit_data*.json
+```
+
+Cleanup duplicate deposit_data.
+```
+rm .eth/seed_check/*
+```
+
 ## License
 
 [Apache License v2](https://github.com/eth-educators/eth-docker/blob/main/LICENSE)
