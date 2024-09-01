@@ -61,7 +61,7 @@ When creating keys, you can specify a PulseChain address that withdrawals will b
 **Do not** set your withdrawal address to an exchange wallet. The funds will not
 be credited, and you will battle support for them.
 
-This command will create the keys to deposit ETH against:
+This command will create the keys to deposit PLS against:
 
 `./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
 > Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
@@ -135,7 +135,7 @@ replacing `PATHTOKEYS` with the actual path where they are.
 
 **Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f consensus` and `./ethd logs -f execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
 
-Once you are ready, you can send Pulse to the deposit contract by using
+Once you are ready, you can send PLS to the deposit contract by using
 the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Testnet launchpad](https://launchpad.v4.testnet.pulsechain.com/en/)
 or [Mainnet launchpad](https://launchpad.pulsechain.com/).
 
