@@ -133,7 +133,7 @@ replacing `PATHTOKEYS` with the actual path where they are.
 
 ## Deposit at launchpad
 
-**Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f consensus` and `./ethd logs -f execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
+**Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f --tail 50 consensus` and `./ethd logs -f --tail 50 execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
 
 Once you are ready, you can send PLS to the deposit contract by using
 the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Testnet launchpad](https://launchpad.v4.testnet.pulsechain.com/en/)
