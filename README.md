@@ -1,6 +1,6 @@
 # Pulse Docker: Docker automation for PulseChain nodes.
 
-Forked from Eth Docker, a docker automation project for [Ethereum](https://ethereum.org/en/upgrades/) consensus and execution clients.
+Forked from Eth Docker, a simple yet configurable way to run [Ethereum](https://ethereum.org/en/upgrades/) nodes.
 
 ####  Your donations are greatly appreciated and make a difference. Thank you for your support!
 
