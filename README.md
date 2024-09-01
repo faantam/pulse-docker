@@ -141,7 +141,7 @@ or [Mainnet launchpad](https://launchpad.pulsechain.com/).
 
 ## Voluntary exit
 
-To exit, run ./ethd cmd run --rm validator-exit and follow the prompts.
+To exit, run `./ethd cmd run --rm validator-exit` and follow the prompts.
 
 ## License
 
