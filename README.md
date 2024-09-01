@@ -106,6 +106,31 @@ Cleanup duplicate deposit_data.
 rm .eth/seed_check/*
 ```
 
+### Prysm - create a wallet
+
+Prysm requires a wallet first. Run `./ethd cmd run --rm create-wallet`, which will set up a wallet and a password for it. You can then print the password with `./ethd keys get-prysm-wallet`
+
+### Start the client and import keys
+
+`./ethd up` to start the client and the client's keymanager API
+
+`./ethd keys` to see all options available to you
+
+`./ethd keys import` to import keys and their slashing protection data. This looks in `.eth/validator_keys` for `*keystore*.json` files and optionally `slashing_protection*.json` files.
+
+If the key JSON files are in another directory, run:
+
+`./ethd keys import --path PATHTOKEYS`
+
+replacing `PATHTOKEYS` with the actual path where they are.
+
+`./ethd keys list` to list all imported keys
+
+> After import, the files in `.eth/validator_keys` can be safely removed from the node,
+> once you have copied them off the node. You'll need the `deposit_data` file to
+> deposit at the launchpad. The `keystore-m` files can be safeguarded in case
+> the node needs to be rebuilt, or deleted and recreated from mnemonic if required.
+
 ## License
 
 [Apache License v2](https://github.com/eth-educators/eth-docker/blob/main/LICENSE)
