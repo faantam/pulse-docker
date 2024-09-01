@@ -1,6 +1,6 @@
 # Pulse Docker: Docker automation for PulseChain nodes.
 
-Forked from Eth Docker, a simple yet configurable way to run [Ethereum](https://ethereum.org/en/upgrades/) nodes.
+Forked from Eth Docker, a simple yet configurable way to run [Ethereum](https://ethereum.org/en/upgrades/) nodes. Pulse Docker currently supports Go-Pulse and Prysm for its execution and consensus clients, respectively. You can run a validator, mananage keys, and run Grafana all from Pulse Docker!
 
 ####  Your donations are greatly appreciated and make a difference. Thank you for your support!
 
@@ -33,6 +33,8 @@ Finally - install, configure, and run Pulse Docker:
 * `./ethd install`
 * `./ethd config`
 * `./ethd up`
+
+To see the full list of commands, run `./ethd -h`
 
 ## Updating
 
