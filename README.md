@@ -4,8 +4,6 @@ Forked from Eth Docker, a docker automation project for [Ethereum](https://ether
 
 ## Getting Started
 
-Please see the [official Eth Docker documentation](https://eth-docker.net).
-
 For a quick testnet start with Ubuntu, you can install docker-ce:
 
 ```bash
@@ -37,6 +35,13 @@ Finally - install, configure, and run Pulse Docker:
 To update Pulse Docker and the images, run:
 * `./ethd update`
 * `./ethd up`
+
+## Connecting to local Grafana
+
+Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new password.
+
+> Do not expose the Grafana port to the Internet. You can use [SSH tunneling](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
+> to reach Grafana securely over the Internet.
 
 ## License
 
