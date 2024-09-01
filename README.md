@@ -51,7 +51,7 @@ Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new passw
 
 For mainnet, best practice is to create keys using a Linux Live USB and the official [staking-deposit-cli](https://gitlab.com/pulsechaincom/staking-deposit-cli). Here is a [YouTube walkthrough](https://www.youtube.com/watch?v=oDELXYNSS5w) for this process. Make sure to safeguard your mnemonic and only ever keep it offline! In steel and in a safe is best.
 
-> The YouTube video is for Ethereum. The process is the same for PulseChain, except we use this codebase: https://gitlab.com/pulsechaincom/staking-deposit-cli.
+> The YouTube video is for Ethereum. The process is the same for PulseChain, except we use [this codebase](https://gitlab.com/pulsechaincom/staking-deposit-cli) and the --chain=pulsechain flag when running the deposit.sh script.
 
 ### If you want to create keys with Pulse Docker
 
