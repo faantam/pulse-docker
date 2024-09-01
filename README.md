@@ -145,8 +145,4 @@ To exit, run ./ethd cmd run --rm validator-exit and follow the prompts.
 
 ## License
 
-[Apache License v2](https://github.com/eth-educators/eth-docker/blob/main/LICENSE)
-
-# Version
-
-This is eth-docker v2.2.8.6
+[Apache License v2](https://github.com/faantam/pulse-docker/blob/main/LICENSE)
