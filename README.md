@@ -43,6 +43,35 @@ Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new passw
 > Do not expose the Grafana port to the Internet. You can use [SSH tunneling](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
 > to reach Grafana securely over the Internet.
 
+## Create keys
+
+For mainnet, best practice is to create keys using a Linux Live USB and the official [staking-deposit-cli](https://gitlab.com/pulsechaincom/staking-deposit-cli). Here is a [YouTube walkthrough](https://www.youtube.com/watch?v=oDELXYNSS5w) for this process. Make sure to safeguard your mnemonic and only ever keep it offline! In steel and in a safe is best.
+
+### If you want to create keys with Pulse Docker
+
+If you are going to use the deposit-cli that is bundled with Pulse Docker, please make sure to edit `.env` and that the `COMPOSE_FILE` line contains `:deposit-cli.yml`. You can edit with `nano .env`.
+
+Make sure you're in the project directory, `cd ~/pulse-docker` by default.
+
+When creating keys, you can specify a PulseChain address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
+> Make sure the PulseChain address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address
+
+**Do not** set your withdrawal address to an exchange wallet. The funds will not
+be credited, and you will battle support for them.
+
+This command will create the keys to deposit ETH against:
+
+`./ethd cmd run --rm deposit-cli-new --execution_address YOURHARDWAREWALLETADDRESS --uid $(id -u)`
+> Specifying the uid is optional. If this is not done, the generated files will be owned by the user with uid `1000`
+
+Choose the number of validators you wish to create.
+> A validator is synonymous to one 32 million Pulse stake. Multiple validators can be imported to a single validator client.
+
+The created files will be in the directory `.eth/validator_keys` in this project.
+> staking-deposit-cli shows you a different directory, that's because it has a view from inside the container.
+ 
+This is also where you'd place your own keystore files if you already have some for import.
+
 ## License
 
 [Apache License v2](https://github.com/eth-educators/eth-docker/blob/main/LICENSE)
