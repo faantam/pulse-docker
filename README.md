@@ -56,7 +56,7 @@ If you are going to use the deposit-cli that is bundled with Pulse Docker, pleas
 Make sure you're in the project directory, `cd ~/pulse-docker` by default.
 
 When creating keys, you can specify a PulseChain address that withdrawals will be paid to. If you have a hardware wallet that withdrawals should go to, this is a good option.
-> Make sure the PulseChain address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address
+> Make sure the PulseChain address is correct, you cannot change it after you deposit. You can also remove that parameter, in which  case withdrawals would be done with the mnemonic seed, not against a fixed address.
 
 **Do not** set your withdrawal address to an exchange wallet. The funds will not
 be credited, and you will battle support for them.
@@ -130,6 +130,18 @@ replacing `PATHTOKEYS` with the actual path where they are.
 > once you have copied them off the node. You'll need the `deposit_data` file to
 > deposit at the launchpad. The `keystore-m` files can be safeguarded in case
 > the node needs to be rebuilt, or deleted and recreated from mnemonic if required.
+
+## Deposit at launchpad
+
+**Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f consensus` and `./ethd logs -f execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
+
+Once you are ready, you can send Pulse to the deposit contract by using
+the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Testnet launchpad](https://launchpad.v4.testnet.pulsechain.com/en/)
+or [Mainnet launchpad](https://launchpad.pulsechain.com/).
+
+## Voluntary exit
+
+To exit, run ./ethd cmd run --rm validator-exit and follow the prompts.
 
 ## License
 
