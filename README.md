@@ -28,23 +28,22 @@ Add the current Unix user to the `docker` group:
 sudo usermod -aG docker ${USER}
 ```
 
-Finally - install, configure, and run Pulse Docker:
+Next - install and configure Pulse Docker:
 * `cd ~ && git clone https://github.com/faantam/pulse-docker.git && cd pulse-docker`
 * `./ethd install`
 * `./ethd config`
-* `./ethd up`
+
+If you want to use the path-based database scheme, then edit the `~/pulse-docker/.env` file. Change the line that says `EL_EXTRAS=` to `EL_EXTRAS=--state.scheme=path`.
+
+To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by going to [Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the docker logs.
 
 To see the full list of commands, run `./ethd -h`
 
-## Updating
-
-To update Pulse Docker and the images, run:
-* `./ethd update`
-* `./ethd up`
-
 ## Connecting to local Grafana
 
-Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new password.
+Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new password. Replace "YOURSERVERIP" with localhost if you're on your validator computer. If you're on another computer within your LAN network, use your validator computer's private IP.
+
+To see the available dashboards, go to http://YOURSERVERIP:3000/dashboards
 
 > Do not expose the Grafana port to the Internet. You can use [SSH tunneling](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
 > to reach Grafana securely over the Internet.
@@ -144,6 +143,12 @@ replacing `PATHTOKEYS` with the actual path where they are.
 Once you are ready, you can send PLS to the deposit contract by using
 the `.eth/validator_keys/deposit_data-TIMESTAMP.json` file at the [Testnet launchpad](https://launchpad.v4.testnet.pulsechain.com/en/)
 or [Mainnet launchpad](https://launchpad.pulsechain.com/).
+
+## Updating
+
+To update Pulse Docker and the images, run:
+* `./ethd update`
+* `./ethd up`
 
 ## Voluntary exit
 
