@@ -7,7 +7,6 @@
 # common use case. It properly is a Prometheus without Grafana and the ability to add custom
 # content to prometheus.yml
 
-version: "3.9"
 x-logging: &logging
   logging:
     driver: json-file

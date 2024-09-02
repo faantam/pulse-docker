@@ -1,5 +1,4 @@
 # Grafana for use with rootless docker. Omits node-exporter, cadvisor, promtail and Loki
-version: "3.9"
 x-logging: &logging
   logging:
     driver: json-file
