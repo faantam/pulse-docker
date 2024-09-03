@@ -1,6 +1,6 @@
 # Pulse Docker: Docker automation for PulseChain nodes.
 
-Forked from Eth Docker, a simple yet configurable way to run [Ethereum](https://ethereum.org/en/upgrades/) nodes. Pulse Docker currently supports Go-Pulse and Prysm for its execution and consensus clients, respectively. You can run a validator, manage keys, and run Grafana all from Pulse Docker!
+Forked from Eth Docker, a simple yet configurable way to run [Ethereum](https://ethereum.org/en/upgrades/) nodes. Pulse Docker currently supports Go-Pulse and Prysm for its execution and consensus clients, respectively. You can run a validator node, manage keys, and run Grafana all from Pulse Docker!
 
 ####  Your donations are greatly appreciated and make a difference. Thank you for your support!
 
@@ -35,7 +35,7 @@ Next - install and configure Pulse Docker:
 
 If you want to use the path-based database scheme, then edit the `~/pulse-docker/.env` file. Change the line that says `EL_EXTRAS=` to `EL_EXTRAS=--state.scheme=path`.
 
-To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by going to [Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the Docker logs.
+To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by [going to Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the Docker logs.
 
 To see the full list of commands, run `./ethd -h`
 
