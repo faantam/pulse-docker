@@ -48,7 +48,7 @@ To see the available dashboards, go to http://YOURSERVERIP:3000/dashboards
 > Do not expose the Grafana port to the Internet. You can use [SSH tunneling](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
 > to reach Grafana securely over the Internet.
 
-## Create keys
+## Creating keys
 
 For mainnet, best practice is to create keys using a Linux Live USB and the official [staking-deposit-cli](https://gitlab.com/pulsechaincom/staking-deposit-cli). Here is a [YouTube walkthrough](https://www.youtube.com/watch?v=oDELXYNSS5w) for this process. Make sure to safeguard your mnemonic and only ever keep it offline! In steel and in a safe is best.
 
@@ -111,7 +111,7 @@ Cleanup duplicate deposit_data.
 rm .eth/seed_check/*
 ```
 
-## Import keys
+## Importing keys
 
 ### Prysm - create a wallet
 
@@ -138,7 +138,7 @@ replacing `PATHTOKEYS` with the actual path where they are.
 > deposit at the launchpad. The `keystore-m` files can be safeguarded in case
 > the node needs to be rebuilt, or deleted and recreated from mnemonic if required.
 
-## Deposit at launchpad
+## Depositing at launchpad
 
 **Caution**: You may wish to wait until the consensus and execution client are fully synchronized before you deposit. Check their logs with `./ethd logs -f --tail 50 consensus` and `./ethd logs -f --tail 50 execution`. This safe-guards against the validator being marked offline if your validator is activated before the consensus client syncs.
 
