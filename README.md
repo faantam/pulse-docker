@@ -35,7 +35,7 @@ Next - install and configure Pulse Docker:
 
 If you want to use the path-based database scheme, then edit the `~/pulse-docker/.env` file. Change the line that says `EL_EXTRAS=` to `EL_EXTRAS=--state.scheme=path`.
 
-To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by going to [Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the docker logs.
+To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by going to [Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the Docker logs.
 
 To see the full list of commands, run `./ethd -h`
 
@@ -110,6 +110,8 @@ Cleanup duplicate deposit_data.
 ```
 rm .eth/seed_check/*
 ```
+
+## Import keys
 
 ### Prysm - create a wallet
 
