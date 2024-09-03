@@ -154,7 +154,7 @@ To update Pulse Docker and the images, run:
 
 ## Using a client's specific version
 
-To use a specific verion of a client, edit the `.env` file. Change the Docker tag of the relevant client.
+To use a specific version of a client, edit the `.env` file. Change the Docker tag of the relevant client.
 
 For example: To use v3.1.1 for Go-Pulse, change `GETH_DOCKER_TAG=latest` to `GETH_DOCKER_TAG=v3.1.1`. To apply the changes, run `./ethd up`.
 
