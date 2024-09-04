@@ -54,7 +54,7 @@ For mainnet, best practice is to create keys using a Linux Live USB and the offi
 
 > The YouTube video is for Ethereum. The process is the same for PulseChain, except we use [this codebase](https://gitlab.com/pulsechaincom/staking-deposit-cli) and the `--chain=pulsechain` or `--chain=pulsechain-testnet-v4` flags when running the deposit.sh script.
 
-### If you want to create keys with Pulse Docker
+### If you want to create keys with Pulse Docker, stay in this section (otherwise, skip to [Importing keys](https://github.com/faantam/pulse-docker/tree/main#importing-keys))
 
 If you are going to use the deposit-cli that is bundled with Pulse Docker, please make sure to edit `.env` and that the `COMPOSE_FILE` line contains `:deposit-cli.yml`. You can edit with `nano .env`.
 
