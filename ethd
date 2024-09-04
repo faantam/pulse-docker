@@ -1316,21 +1316,10 @@ query_network() {
     # Mainnet or Testnet network
     NETWORK=$(whiptail --notags --title "Select Network" --menu \
     "Which network do you want to run on?" 12 60 5 \
-    "goerli" "Görli (né Prater) Testnet" \
-    "mainnet" "Ethereum Mainnet" \
-    "gnosis" "Gnosis Chain (né xDai)" \
-    "zhejiang" "Zhejiang Testnet" \
     "pulsechain" "PulseChain Mainnet" \
-    "pulsechain-testnet-v4" "PulseChain Testnet v4" \
-    "sepolia" "Sepolia Testnet (permissioned validators)" 3>&1 1>&2 2>&3)
+    "pulsechain-testnet-v4" "PulseChain Testnet v4" 3>&1 1>&2 2>&3)
 
     case "${NETWORK}" in
-       "mainnet")
-           echo "You chose to run on Ethereum mainnet"
-           ;;
-       "gnosis")
-           echo "You chose to run on Gnosis Chain"
-           ;;
        "pulsechain")
            echo "You chose to run on PulseChain mainnet"
            ;;
@@ -1356,14 +1345,11 @@ query_deployment() {
       __deployment=$(whiptail --notags --title "Select deployment type" --menu \
       "What kind of deployment do you want to run?" 11 80 4 \
       "node" "Ethereum node - consensus, execution and validator client" \
-      "rocket" "Validator client only - integrate with RocketPool" \
       "rpc" "Ethereum RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
     else
       __deployment=$(whiptail --notags --title "Select deployment type" --menu \
       "What kind of deployment do you want to run?" 12 80 5 \
       "node" "Ethereum node - consensus, execution and validator client" \
-      "rocket" "Validator client only - integrate with RocketPool" \
-      "blox" "Blox SSV node - consensus, execution and ssv-node" \
       "rpc" "Ethereum RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
     fi
 
@@ -1380,36 +1366,14 @@ query_validator_client() {
     if [ "${NETWORK}" = "gnosis" ]; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select validator client" --menu \
       "Which validator client do you want to run?" 9 65 3 \
-      "lighthouse-vc-only.yml" "Lighthouse validator client" \
-      "teku-vc-only.yml" "Teku validator client" \
-      "nimbus-vc-only.yml" "Nimbus validator client" 3>&1 1>&2 2>&3)
-    elif [ "${__deployment}" = "rocket" ]; then
-        if uname -a | grep -q aarch64; then
-          CONSENSUS_CLIENT=$(whiptail --notags --title "Select validator client" --menu \
-          "Which validator client do you want to run?" 9 65 3 \
-          "lighthouse-vc-only.yml" "Lighthouse validator client" \
-          "teku-vc-only.yml" "Teku validator client" \
-          "nimbus-vc-only.yml" "Nimbus validator client" 3>&1 1>&2 2>&3)
-        else
-          CONSENSUS_CLIENT=$(whiptail --notags --title "Select validator client" --menu \
-          "Which validator client do you want to run?" 9 65 3 \
-          "teku-vc-only.yml" "Teku validator client" \
-          "lighthouse-vc-only.yml" "Lighthouse validator client" \
-          "nimbus-vc-only.yml" "Nimbus validator client" 3>&1 1>&2 2>&3)
-        fi
+      "lighthouse-vc-only.yml" "Lighthouse validator client" 3>&1 1>&2 2>&3)
     elif uname -a | grep -q aarch64; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select validator client" --menu \
       "Which validator client do you want to run?" 9 65 3 \
-      "lighthouse-vc-only.yml" "Lighthouse validator client" \
-      "teku-vc-only.yml" "Teku validator client" \
-      "nimbus-vc-only.yml" "Nimbus validator client" 3>&1 1>&2 2>&3)
+      "prysm-vc-only.yml" "Prysm validator client" 3>&1 1>&2 2>&3)
     else
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select validator client" --menu \
       "Which validator client do you want to run?" 11 65 5 \
-      "teku-vc-only.yml" "Teku validator client" \
-      "lighthouse-vc-only.yml" "Lighthouse validator client" \
-      "lodestar-vc-only.yml" "Lodestar validator client" \
-      "nimbus-vc-only.yml" "Nimbus validator client" \
       "prysm-vc-only.yml" "Prysm validator client" 3>&1 1>&2 2>&3)
     fi
 
@@ -1426,25 +1390,14 @@ query_consensus_client() {
     if [ "${NETWORK}" = "gnosis" ]; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 10 65 3 \
-      "lighthouse.yml" "Lighthouse (Rust) - consensus and validator client" \
-      "teku.yml" "Teku (Java) - consensus and validator client" \
-      "nimbus.yml" "Nimbus (Nim) - consensus and validator client" 3>&1 1>&2 2>&3)
-    elif [ "${NETWORK}" = "zhejiang" ]; then
-      CONSENSUS_CLIENT=lodestar.yml
+      "lighthouse.yml" "Lighthouse (Rust) - consensus and validator client" 3>&1 1>&2 2>&3)
     elif uname -a | grep -q aarch64; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 10 65 3 \
-      "nimbus.yml" "Nimbus (Nim) - consensus and validator client" \
-      "lodestar.yml" "Lodestar (Javascript) - consensus and validator client" \
-      "lighthouse.yml" "Lighthouse (Rust) - consensus and validator client" \
-      "teku.yml" "Teku (Java) - consensus and validator client" 3>&1 1>&2 2>&3)
+      "prysm.yml" "Prysm (Go) - consensus and validator client" 3>&1 1>&2 2>&3)
     else
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 12 65 5 \
-      "teku.yml" "Teku (Java) - consensus and validator client" \
-      "lighthouse.yml" "Lighthouse (Rust) - consensus and validator client" \
-      "nimbus.yml" "Nimbus (Nim) - consensus and validator client" \
-      "lodestar.yml" "Lodestar (Javascript) - consensus and validator client" \
       "prysm.yml" "Prysm (Go) - consensus and validator client" 3>&1 1>&2 2>&3)
     fi
 
@@ -1461,23 +1414,14 @@ query_consensus_only_client() {
     if [ "${NETWORK}" = "gnosis" ]; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 10 65 3 \
-      "lighthouse-cl-only.yml" "Lighthouse (Rust) - consensus client" \
-      "teku-cl-only.yml" "Teku (Java) - consensus client" \
-      "nimbus-cl-only.yml" "Nimbus (Nim) - consensus client" 3>&1 1>&2 2>&3)
+      "lighthouse-cl-only.yml" "Lighthouse (Rust) - consensus client" 3>&1 1>&2 2>&3)
     elif uname -a | grep -q aarch64; then
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 10 65 3 \
-      "nimbus-cl-only.yml" "Nimbus (Nim) - consensus client" \
-      "lodestar-cl-only.yml" "Lodestar (Javascript) - consensus client" \
-      "lighthouse-cl-only.yml" "Lighthouse (Rust) - consensus client" \
-      "teku-cl-only.yml" "Teku (Java) - consensus client" 3>&1 1>&2 2>&3)
+      "prysm-cl-only.yml" "Prysm (Go) - consensus client" 3>&1 1>&2 2>&3)
     else
       CONSENSUS_CLIENT=$(whiptail --notags --title "Select consensus client" --menu \
       "Which consensus client do you want to run?" 12 65 5 \
-      "teku-cl-only.yml" "Teku (Java) - consensus client" \
-      "lighthouse-cl-only.yml" "Lighthouse (Rust) - consensus client" \
-      "nimbus-cl-only.yml" "Nimbus (Nim) - consensus client" \
-      "lodestar-cl-only.yml" "Lodestar (Javascript) - consensus client" \
       "prysm-cl-only.yml" "Prysm (Go) - consensus client" 3>&1 1>&2 2>&3)
     fi
 
@@ -1532,24 +1476,15 @@ query_execution_client() {
     if [ "${NETWORK}" = "gnosis" ]; then
       EXECUTION_CLIENT=$(whiptail --notags --title "Select execution client" --menu \
       "Which execution client do you want to run?" 9 60 2 \
-      "nethermind.yml" "Nethermind (.NET)" \
       "erigon.yml" "Erigon (Go)" 3>&1 1>&2 2>&3)
-    elif [ "${NETWORK}" = "zhejiang" ]; then
-      EXECUTION_CLIENT=nethermind.yml
     elif uname -a | grep -q aarch64; then
       EXECUTION_CLIENT=$(whiptail --notags --title "Select execution client" --menu \
       "Which execution client do you want to run?" 9 60 3 \
-      "besu.yml" "Besu (Java)" \
-      "nethermind.yml" "Nethermind (.NET)" \
       "geth.yml" "Geth (Go)" 3>&1 1>&2 2>&3)
     else
       EXECUTION_CLIENT=$(whiptail --notags --title "Select execution client" --menu \
       "Which execution client do you want to run?" 12 60 5 \
-      "nethermind.yml" "Nethermind (.NET)" \
-      "besu.yml" "Besu (Java)" \
-      "geth.yml" "Geth (Go)" \
-      "erigon.yml" "Erigon (Go)" \
-      "NONE" "Custom - Distributed" 3>&1 1>&2 2>&3)
+      "geth.yml" "Geth (Go)" 3>&1 1>&2 2>&3)
     fi
 
     exitstatus=$?
