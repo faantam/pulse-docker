@@ -117,9 +117,8 @@ case "$CLIENT" in
     __file='/etc/grafana/provisioning/dashboards/docker-host-container-overview.json'
     wget -qcO - $__url | jq 'walk(if . == "${DS_PROMETHEUS}" then "Prometheus" else . end)' >$__file
     # Log file dashboard (via loki)
-    __revision=$(wget -q -O - https://grafana.com/api/dashboards/18700 | jq .revision)
-    __url="https://grafana.com/api/dashboards/18700/revisions/${__revision}/download"
-    __file='/etc/grafana/provisioning/dashboards/eth-docker-logs.json'
+    __url="https://raw.githubusercontent.com/faantam/pulse-docker/main/grafana/pulse_docker_logs.json"
+    __file='/etc/grafana/provisioning/dashboards/pulse_docker_logs.json'
     wget -qcO - "${__url}" | jq 'walk(if . == "${DS_LOKI}" then "Loki" else . end)' >"${__file}"
     ;;
 esac
