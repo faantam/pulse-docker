@@ -1157,7 +1157,7 @@ down() {
 
 terminate() {
     while true; do
-        read -rp "WARNING - this action will destroy all data stores for this Ethereum node. Do you wish to continue? (No/Yes) " yn
+        read -rp "WARNING - this action will destroy all data stores for this PulseChain node. Do you wish to continue? (No/Yes) " yn
         case $yn in
             [Yy][Ee][Ss] ) break;;
             * ) echo "Aborting, no changes made"; exit 1;;
@@ -1211,20 +1211,20 @@ query_deployment() {
     if [ "${NETWORK}" = "gnosis" ]; then
       __deployment=$(whiptail --notags --title "Select deployment type" --menu \
       "What kind of deployment do you want to run?" 11 80 3 \
-      "node" "Ethereum node - consensus, execution and validator client" \
-      "rpc" "Ethereum RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
+      "node" "PulseChain node - consensus, execution and validator client" \
+      "rpc" "PulseChain RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
     elif [ "${NETWORK}" = "zhejiang" ] ; then
       __deployment=node
     elif uname -a | grep -q aarch64; then
       __deployment=$(whiptail --notags --title "Select deployment type" --menu \
       "What kind of deployment do you want to run?" 11 80 4 \
-      "node" "Ethereum node - consensus, execution and validator client" \
-      "rpc" "Ethereum RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
+      "node" "PulseChain node - consensus, execution and validator client" \
+      "rpc" "PulseChain RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
     else
       __deployment=$(whiptail --notags --title "Select deployment type" --menu \
       "What kind of deployment do you want to run?" 12 80 5 \
-      "node" "Ethereum node - consensus, execution and validator client" \
-      "rpc" "Ethereum RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
+      "node" "PulseChain node - consensus, execution and validator client" \
+      "rpc" "PulseChain RPC node - consensus and execution client" 3>&1 1>&2 2>&3)
     fi
 
     exitstatus=$?
@@ -1833,12 +1833,12 @@ printhelp() {
     echo "     updates all client versions and eth-docker itself"
     echo "     --refresh-targets will reset your custom build targets in .env to defaults"
     echo "  up (or start)"
-    echo "     starts the Ethereum node, or restarts containers that had their image or"
+    echo "     starts the PulseChain node, or restarts containers that had their image or"
     echo "     configuration changed"
     echo "  down (or stop)"
-    echo "     stops the Ethereum node"
+    echo "     stops the PulseChain node"
     echo "  restart"
-    echo "     restarts the Ethereum node, a combination of down and up"
+    echo "     restarts the PulseChain node, a combination of down and up"
     echo "  version"
     echo "     prints the version(s) of currently running client(s)"
     echo "  logs"
@@ -1846,7 +1846,7 @@ printhelp() {
     echo "  cmd <command>"
     echo "     executes an arbitrary docker compose command. Use \"cmd help\" to list them"
     echo "  terminate"
-    echo "     stops the Ethereum node and destroys all data stores"
+    echo "     stops the PulseChain node and destroys all data stores"
     echo "  prune-geth"
     echo "     stops the Geth execution client and prunes its DB. This takes about 4-5 hours"
     echo "  resync-execution"
