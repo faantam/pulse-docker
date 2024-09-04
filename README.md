@@ -33,6 +33,9 @@ Next - install and configure Pulse Docker:
 * `./ethd install`
 * `./ethd config`
 
+Below is the GUI that will pop up after running `./ethd config`. Press `Enter` to accept the option or `Esc` to exit. Use the arrow keys to select different options.
+![Network Options](https://github.com/user-attachments/assets/6809a5c9-19fc-4583-9c58-97d79c1ca83f)
+
 If you want to use the path-based database scheme, then edit the `~/pulse-docker/.env` file. Change the line that says `EL_EXTRAS=` to `EL_EXTRAS=--state.scheme=path`.
 
 To start syncing, run `./ethd up`. This will take at least eight hours. You can check the status by [going to Grafana](https://github.com/faantam/pulse-docker/tree/main?tab=readme-ov-file#connecting-to-local-grafana) or checking the Docker logs.
