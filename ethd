@@ -269,16 +269,7 @@ check_disk_space() {
     var="COMPOSE_FILE"
     value=$(sed -n -e "s/^${var}=\(.*\)/\1/p" ".env" || true)
 
-    if [[ "${value}" =~ "nethermind.yml" ]] && [[ "${__free_space}" -lt 314572800 ]]; then
-        echo ""
-        echo "You are running Nethermind and have less than 300 GiB of free disk space."
-        echo "If Avail reads 250 GiB or more, prune with ./ethd prune-nethermind:"
-        echo ""
-        df -h "${__docker_dir}"
-        echo ""
-        echo "If it's less than 250 GiB, you may need to resync Nethermind from scratch."
-        echo ""
-    elif [[ "${value}" =~ "geth.yml" ]] && [[ "${__free_space}" -lt 104857600 ]]; then
+    if [[ "${value}" =~ "geth.yml" ]] && [[ "${__free_space}" -lt 104857600 ]]; then
         echo ""
         echo "You are running Geth and have less than 100 GiB of free disk space."
         echo "If Avail reads 40 GiB or more, prune with ./ethd prune-geth:"
@@ -992,123 +983,6 @@ prune-geth() {
 the \"Compacting database\" stage it may not output logs for an hour or so, that is normal."
     echo ""
     echo "When prune is done, which takes 4-5 hours, Geth will automatically start again."
-    echo ""
-}
-
-prune-nethermind() {
-    __non_interactive=0
-    while :
-    do
-        if [ -z ${1+x} ]; then
-            break
-        fi
-        case "$1" in
-            --non-interactive)
-                __non_interactive=1
-                shift
-                ;;
-            *)
-                echo "Error: Unknown option: $1" >&2
-                exit 1
-                ;;
-        esac
-    done
-
-    if [ ! -f "./${ENV_FILE}" ]; then
-        echo "${ENV_FILE} configuration file not found, aborting."
-        exit 1
-    fi
-
-    if ! grep -q '^COMPOSE_FILE=.*nethermind\.yml' "${ENV_FILE}" 2>/dev/null ; then
-        echo "You do not appear to be using Nethermind, aborting."
-        exit 1
-    fi
-
-    # Check for archive node
-    var="ARCHIVE_NODE"
-    value=$(sed -n -e "s/^${var}=\(.*\)/\1/p" ".env" || true)
-    if [[ "${value}" = "true" ]]; then
-        echo "Nethermind is an archive node: Aborting."
-        return
-    fi
-
-    __docker_dir=$(dodocker system info --format '{{.DockerRootDir}}')
-    __free_space=$(df -P ${__docker_dir} | awk '/[0-9]%/{print $(NF-2)}')
-
-    re='^[0-9]+$'
-    if ! [[ "${__free_space}" =~ $re ]] ; then
-        echo "Unable to determine free disk space. This is likely a bug."
-        echo "df reports $(df -P ${__docker_dir}) and __free_space is ${__free_space}"
-        return
-    fi
-
-    if [ "${__free_space}" -lt 262144000 ]; then
-        echo "You do not have enough free disk space. Make sure this reads at least 250G free (Avail):"
-        df -h "${__docker_dir}"
-        echo ""
-        echo "Aborting."
-        exit 1
-    fi
-
-    rpc_line=$(grep '^EL_RPC_PORT=' "${ENV_FILE}")
-    regex='^EL_RPC_PORT=([0-9]+)'
-    if [[ ! "${rpc_line}" =~ ${regex} ]]; then
-        echo "Unable to determine EL_RPC_PORT, aborting."
-        exit 1
-    else
-        rpc_port="${BASH_REMATCH[1]}"
-    fi
-
-    sync_status=$(docompose exec -T execution wget -qO- "http://localhost:$rpc_port" --header 'Content-Type: application/json' --post-data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}')
-    exitstatus=$?
-    if [ $exitstatus -ne 0 ]; then
-        echo "Unable to connect to Nethermind: Is it running?"
-        echo "Output: ${sync_status}"
-        echo "Aborting."
-        exit 1
-    fi
-
-    if [[ ! "${sync_status}" =~ "false" ]]; then
-        echo "Nethermind is not done syncing yet. Sync status:"
-        echo "${sync_status}"
-        echo ""
-        echo "Aborting."
-        exit 1
-    fi
-
-    if [ $__non_interactive = 0 ]; then
-      while true; do
-          read -rp "WARNING - this will prune Nethermind's database in the background. Do you wish to continue? (No/Yes) " yn
-          case $yn in
-              [Yy][Ee][Ss] ) break;;
-              * ) echo "Aborting, no changes made"; exit 1;;
-          esac
-      done
-    fi
-
-    echo ""
-    echo "Starting Nethermind prune"
-    echo ""
-
-    prune_result=$(docompose exec -T execution wget -qO- "http://localhost:1337" --header 'Content-Type: application/json' --post-data '{"jsonrpc":"2.0","method":"admin_prune","params":[],"id":1}')
-    exitstatus=$?
-    if [ $exitstatus -ne 0 ]; then
-        echo "Unable to start prune, error code ${exitstatus}. This is likely a bug."
-        echo "An attempt to run it returned this: ${prune_result}"
-        echo 'The command attempted was: docker-compose run --rm set-prune-marker "curl -s --data {\\\"method\\\":\\\"admin_prune\\\",\\\"params\\\":[],\\\"id\\\":1,\\\"jsonrpc\\\":\\\"2.0\\\"} -H Content-Type:\ application/json http://execution:8545"'
-        exit ${exitstatus}
-    fi
-    echo "Nethermind returns ${prune_result}"
-    if [[ ! "${prune_result}" =~ "Starting" ]]; then
-        echo "Unable to start prune. This is likely a bug."
-        exit 1
-    fi
-    echo ""
-    echo "Prune is running, you can observe it with './ethd logs -f --tail 50 execution'"
-    echo ""
-    echo "Please do not restart the node or restart Nethermind until prune is done."
-    echo ""
-    echo "When prune is done, Nethermind will automatically re-start."
     echo ""
 }
 
@@ -1975,8 +1849,6 @@ printhelp() {
     echo "     stops the Ethereum node and destroys all data stores"
     echo "  prune-geth"
     echo "     stops the Geth execution client and prunes its DB. This takes about 4-5 hours"
-    echo "  prune-nethermind"
-    echo "     restarts the Nethermind execution client and prunes its DB."
     echo "  resync-execution"
     echo "     removes the execution layer database and forces a resync."
     echo "  resync-consensus"
