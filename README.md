@@ -46,7 +46,7 @@ To see the full list of commands, run `./ethd -h`
 
 Connect to http://YOURSERVERIP:3000/, log in as admin/admin, and set a new password. Replace "YOURSERVERIP" with localhost if you're on your validator computer. If you're on another computer within your LAN network, use your validator computer's private IP.
 
-To see the available dashboards, go to http://YOURSERVERIP:3000/dashboards. These are my favorite ones that are preloaded in Pulse Docker: Home Staking Dashboard, Pulse Docker Logs, Ethereum Metrics Exporter (Single), and geth_dashboard.
+To see the available dashboards, go to http://YOURSERVERIP:3000/dashboards. These are my favorite ones that are preloaded in Pulse Docker: _Home Staking Dashboard_, _Pulse Docker Logs_, _Ethereum Metrics Exporter (Single)_, and _geth_dashboard_.
 
 > Do not expose the Grafana port to the Internet. You can use [SSH tunneling](https://www.howtogeek.com/168145/how-to-use-ssh-tunneling/)
 > to reach Grafana securely over the Internet.
