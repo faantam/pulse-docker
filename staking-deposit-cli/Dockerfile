@@ -30,7 +30,7 @@ COPY --from=builder /src/staking-deposit-cli/staking_deposit ./staking_deposit
 
 RUN apk add --update gcc libc-dev linux-headers bash su-exec
 
-RUN pip3 install -r requirements.txt
+RUN CFLAGS=-Wno-incompatible-pointer-types pip3 install -r requirements.txt
 
 RUN python3 setup.py install
 
